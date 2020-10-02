@@ -1,12 +1,9 @@
 {
   "name": "@xinghe/sy-cli",
-  "version": "0.1.2-beta",
-  "description": "command tool for test",
+  "version": "0.1.3-beta",
+  "description": "A command line tool for generating your remote repo automatically",
   "bin": {
-    "sy": "./bin/sy",
-    "sy-init": "./bin/sy-init",
-    "sy-add": "./bin/sy-add",
-    "sy-ls": "./bin/sy-ls"
+    "sy": "./bin/sy"
   },
   "main": "index.js",
   "scripts": {

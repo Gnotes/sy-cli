@@ -12,10 +12,10 @@ This cli tool would like to help you to create a wonderful project with template
 program
 .version(package.version)
 .usage('<Command>')
-.command('init','init a project with name')
+.command('init','init a project')
 .command('add','add a template')
 .command('ls','list all templates')
-.command('rm','rmove a template')
+.command('rm','remove a template')
 .parse(process.argv);
 
 process.on('unhandledRejection', () => {
