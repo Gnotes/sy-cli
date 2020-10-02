@@ -20,7 +20,7 @@ const main = async ()=>{
   const { name } = await prompt({
     type:'select',
     name: 'name',
-    message: 'Select a template to be removed',
+    message: 'Select a template to remove',
     choices: choices.map((i)=> i.message),
   });
   const __choices__ = choices.filter((i)=> i.message !== name);
