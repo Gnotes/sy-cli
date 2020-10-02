@@ -39,7 +39,7 @@ const clone = (target, url)=>{
 
 
 const checkChoices = ()=>{
-  const choices = getChoices;
+  const choices = getChoices();
   if(choices.length === 0){
     console.log(chalk.red(`There is no choice exist, Add One please!`));
     console.log(chalk.green(`run: sy add
