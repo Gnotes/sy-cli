@@ -2,7 +2,7 @@
 
 const chalk = require('chalk');
 const program = require('commander');
-const choices = require('../src/choices.json');
+const { getChoices, checkChoices } = require('../src/util');
 
 program.parse(process.argv);
 
@@ -14,6 +14,8 @@ Goodbye!
 });
 
 const main = async ()=>{
+  checkChoices();
+  const choices = getChoices();
   choices.forEach((choice)=>{
     console.log(chalk.cyan(`${choice.message} \t: ${choice.value}`))
   })

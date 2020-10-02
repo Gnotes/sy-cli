@@ -3,9 +3,7 @@
 const chalk = require('chalk');
 const program = require('commander');
 const { prompt } = require('enquirer');
-const fs = require('fs-extra');
-const path = require('path');
-const choices = require('../src/choices.json');
+const { setChoices, getChoices,checkChoices } = require('../src/util');
 
 program.parse(process.argv);
 
@@ -17,6 +15,8 @@ Goodbye!
 });
 
 const main = async ()=>{
+  checkChoices();
+  const choices = getChoices();
   const { name } = await prompt({
     type:'select',
     name: 'name',
@@ -24,7 +24,8 @@ const main = async ()=>{
     choices: choices.map((i)=> i.message),
   });
   const __choices__ = choices.filter((i)=> i.message !== name);
-  fs.writeFileSync(path.resolve(__dirname,'../src/choices.json'),JSON.stringify(__choices__));
+
+  setChoices(__choices__)
 }
 
 main();

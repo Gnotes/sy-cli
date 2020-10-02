@@ -3,8 +3,7 @@
 const chalk = require('chalk');
 const program = require('commander');
 const { prompt} = require('enquirer');
-const { clone } = require('../src/util');
-const choices = require('../src/choices.json')
+const { clone, getChoices, checkChoices } = require('../src/util');
 
 program.parse(process.argv);
 
@@ -32,6 +31,9 @@ const __checkProjectName__ = (projectName)=>{
 }
 
 const main = async ()=>{
+  checkChoices();
+  const choices = getChoices();
+  
   const { name, git } = await prompt([
     {
       type: 'input',

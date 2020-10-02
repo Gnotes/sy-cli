@@ -3,9 +3,7 @@
 const chalk = require('chalk');
 const program = require('commander');
 const { prompt} = require('enquirer');
-const fs = require('fs-extra');
-const path = require('path');
-const choices = require('../src/choices.json');
+const { setChoices, getChoices } = require('../src/util');
 
 program.parse(process.argv);
 
@@ -16,24 +14,41 @@ Goodbye!
 `));
 });
 
-const __checkTemplate__ = (template)=>{
+const __checkChoice__ = (choice)=>{
+  const {message, value} = choice;
+  if(!message || !value || message.trim() === '' || value.trim() === ''){
+    console.log(chalk.red(`The name and address are required`));
+    return process.exit(-1);
+  }
 
+  const choices = getChoices();
+
+  for(let i = 0; i < choices.length; i++){
+    const _choice = choices[i];
+    if(_choice.message === choice.message){
+      console.log(chalk.red(`The name ${choice.message} already exist.`));
+      return process.exit(-1);
+    }
+  }
 }
 
 const main = async ()=>{
-  const { template } = await prompt({
+  const { choice } = await prompt({
     type:'form',
-    name: 'template',
+    name: 'choice',
     message: 'Please provide the following information:',
     choices: [
       { name: 'message', message: 'Template Name', initial: '' },
       { name: 'value', message: 'Template Address', initial: '' },
     ]
   });
-  __checkTemplate__(template);
-  const __choices__ = choices.concat(template);
 
-  fs.writeFileSync(path.resolve(__dirname,'../src/choices.json'),JSON.stringify(__choices__));
+  __checkChoice__(choice);
+
+  const choices = getChoices();
+  const __choices__ = choices.concat(choice);
+
+  setChoices(__choices__)
 }
 
 main();

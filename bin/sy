@@ -2,7 +2,7 @@
 
 const program = require('commander');
 const chalk = require('chalk');
-const package = require('../package.json');
+const PKG = require('../package.json');
 
 console.log(chalk.green(`
 Welcome to Sy!
@@ -10,7 +10,7 @@ This cli tool would like to help you to create a wonderful project with template
 `));
 
 program
-.version(package.version)
+.version(PKG.version)
 .usage('<Command>')
 .command('init','init a project')
 .command('add','add a template')
