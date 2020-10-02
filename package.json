@@ -1,6 +1,6 @@
 {
-  "name": "sy",
-  "version": "0.1.0",
+  "name": "@xinghe/sy-cli",
+  "version": "0.1.0-beta",
   "description": "command tool for test",
   "bin": {
     "sy": "./bin/sy",
