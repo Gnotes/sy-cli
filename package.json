@@ -1,0 +1,25 @@
+{
+  "name": "sy",
+  "version": "0.1.0",
+  "description": "command tool for test",
+  "bin": {
+    "sy": "./bin/sy",
+    "sy-init": "./bin/sy-init"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xing.he",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^6.1.0",
+    "download-git-repo": "^3.0.2",
+    "enquirer": "^2.3.6",
+    "fs-extra": "^9.0.1",
+    "log-symbols": "^4.0.0",
+    "ora": "^5.1.0"
+  },
+  "devDependencies": {}
+}

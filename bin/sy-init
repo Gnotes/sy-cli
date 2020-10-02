@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+const chalk = require('chalk');
+const program = require('commander');
+const { prompt} = require('enquirer');
+const { clone } = require('../src/util');
+
+program.parse(process.argv);
+
+process.on('unhandledRejection', (err) => {
+  console.log(err)
+  console.log(chalk.green(`
+Goodbye!
+`));
+});
+
+const __checkProjectName__ = (projectName)=>{
+  if (!projectName) {
+    console.log(chalk.red(`The project name is required
+`));
+    return process.exit(-1);
+  }
+
+  if(!/^\w{2,30}$/.test(projectName)){
+    console.log(chalk.red(`
+    The project name is invalid.
+    Character 、number and underscore are supported only and the length of name is between 2 and 30!
+`));
+    return process.exit(-1);
+  }
+}
+
+const main = async ()=>{
+  const { name, git } = await prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'Enter a project name'
+    },
+    {
+      type:'select',
+      name: 'git',
+      message: 'Select a type',
+      choices: [
+        { message: 'React', value: 'https://github.com/Gnotes/react-hook-faq.git' },
+        { message: 'Vue', value: 'github.vue' },
+        { message: 'MiniProgram', value: 'github.mini-program' },
+        { message: 'Taro', value: 'github.taro' },
+        { message: 'UniApp', value: 'github.uni-app' },
+      ]
+    }
+  ]);
+  __checkProjectName__(name);
+  clone(name, git)
+}
+
+
+main();
