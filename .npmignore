@@ -1,2 +1,3 @@
 node_modules
-packjson-lock.json
+package-lock.json
+yarn.lock
