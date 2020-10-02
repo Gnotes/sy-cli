@@ -1,6 +1,6 @@
 # sy-cli
 
-> CLI 工具
+> A command line tool for generating your remote repo automatically
 
 ```bash
 Usage: sy <Command>
