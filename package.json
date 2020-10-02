@@ -1,16 +1,22 @@
 {
   "name": "@xinghe/sy-cli",
-  "version": "0.1.0-beta",
+  "version": "0.1.1-beta",
   "description": "command tool for test",
   "bin": {
     "sy": "./bin/sy",
-    "sy-init": "./bin/sy-init"
+    "sy-init": "./bin/sy-init",
+    "sy-add": "./bin/sy-add",
+    "sy-ls": "./bin/sy-ls"
   },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "xing.he",
+  "repository": "Gnotes/sy-cli",
+	"author": {
+		"name": "xing he",
+		"email": "1245036094@qq.com"
+	},
   "license": "Apache License",
   "dependencies": {
     "chalk": "^4.1.0",

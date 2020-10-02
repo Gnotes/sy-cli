@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const chalk = require('chalk');
+const program = require('commander');
+const choices = require('../src/choices.json');
+
+program.parse(process.argv);
+
+process.on('unhandledRejection', (err) => {
+  console.log(err)
+  console.log(chalk.green(`
+Goodbye!
+`));
+});
+
+const main = async ()=>{
+  choices.forEach((choice)=>{
+    console.log(chalk.cyan(`${choice.message} \t: ${choice.value}`))
+  })
+  console.log()
+}
+
+main();

@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+
+const chalk = require('chalk');
+const program = require('commander');
+const { prompt} = require('enquirer');
+const fs = require('fs-extra');
+const path = require('path');
+const choices = require('../src/choices.json');
+
+program.parse(process.argv);
+
+process.on('unhandledRejection', (err) => {
+  console.log(err)
+  console.log(chalk.green(`
+Goodbye!
+`));
+});
+
+const __checkTemplate__ = (template)=>{
+
+}
+
+const main = async ()=>{
+  const { template } = await prompt({
+    type:'form',
+    name: 'template',
+    message: 'Please provide the following information:',
+    choices: [
+      { name: 'message', message: 'Template Name', initial: '' },
+      { name: 'value', message: 'Template Address', initial: '' },
+    ]
+  });
+  __checkTemplate__(template);
+  const __choices__ = choices.concat(template);
+
+  fs.writeFileSync(path.resolve(__dirname,'../src/choices.json'),JSON.stringify(__choices__));
+}
+
+main();

@@ -13,6 +13,9 @@ program
 .version(package.version)
 .usage('<Command>')
 .command('init','init a project with name')
+.command('add','add a template')
+.command('ls','list all templates')
+.command('rm','rmove a template')
 .parse(process.argv);
 
 process.on('unhandledRejection', () => {

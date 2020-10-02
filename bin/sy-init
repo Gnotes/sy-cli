@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const program = require('commander');
 const { prompt} = require('enquirer');
 const { clone } = require('../src/util');
+const choices = require('../src/choices.json')
 
 program.parse(process.argv);
 
@@ -41,18 +42,11 @@ const main = async ()=>{
       type:'select',
       name: 'git',
       message: 'Select a type',
-      choices: [
-        { message: 'React', value: 'https://github.com/Gnotes/react-hook-faq.git' },
-        { message: 'Vue', value: 'github.vue' },
-        { message: 'MiniProgram', value: 'github.mini-program' },
-        { message: 'Taro', value: 'github.taro' },
-        { message: 'UniApp', value: 'github.uni-app' },
-      ]
+      choices: choices,
     }
   ]);
   __checkProjectName__(name);
   clone(name, git)
 }
-
 
 main();

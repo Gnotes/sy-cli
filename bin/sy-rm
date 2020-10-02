@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+const chalk = require('chalk');
+const program = require('commander');
+const { prompt } = require('enquirer');
+const fs = require('fs-extra');
+const path = require('path');
+const choices = require('../src/choices.json');
+
+program.parse(process.argv);
+
+process.on('unhandledRejection', (err) => {
+  console.log(err)
+  console.log(chalk.green(`
+Goodbye!
+`));
+});
+
+const main = async ()=>{
+  const { name } = await prompt({
+    type:'select',
+    name: 'name',
+    message: 'Select a template to be removed',
+    choices: choices.map((i)=> i.message),
+  });
+  const __choices__ = choices.filter((i)=> i.message !== name);
+  fs.writeFileSync(path.resolve(__dirname,'../src/choices.json'),JSON.stringify(__choices__));
+}
+
+main();
